@@ -16,7 +16,8 @@ if use_cython:
     ext_modules += [
         Extension("kaldisimple.nnet3", 
                   sources  = [ "kaldisimple/nnet3.pyx", "kaldisimple/nnet3_wrappers.cpp" ],
-                  language = "c++",),
+                  language = "c++",
+                  extra_compile_args=['-std=gnu++11']),
     ]
     cmdclass.update({ 'build_ext': build_ext })
 else:
@@ -40,7 +41,7 @@ setup(
     packages             = ['kaldisimple'],
     cmdclass             = cmdclass,
     ext_modules          = ext_modules,
-    include_dirs         = [numpy.get_include()],
+    include_dirs         = [numpy.get_include(), '/home/zorc/code/kaldi/src', '/home/zorc/code/kaldi/tools/openfst/include', '/home/zorc/code/OpenBLAS/lib/include'],
     classifiers          = [
                                'Development Status :: 2 - Pre-Alpha',
                                'Operating System :: POSIX :: Linux',
